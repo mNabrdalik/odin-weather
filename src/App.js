@@ -1,6 +1,7 @@
-import './App.css';
+import './app.scss';
 import React, { useState, useEffect } from 'react';
 import Searchbar from './components/Searchbar';
+import UnitSwitcher from './components/UnitSwitcher';
 
 function App() {
 
@@ -27,11 +28,11 @@ function App() {
         // console.log(result.current.wind_kph);
 
         //forecast [1] - [3] or [0] - [2]
-        console.log(result.forecast.forecastday[0].date);
-        console.log(result.forecast.forecastday[0].day.avgtemp_c);
-        console.log(result.forecast.forecastday[0].day.avgtemp_f);
-        console.log(result.forecast.forecastday[0].day.avghumidity);
-        console.log(result.forecast.forecastday[0].day.condition.icon);
+        // console.log(result.forecast.forecastday[0].date);
+        // console.log(result.forecast.forecastday[0].day.avgtemp_c);
+        // console.log(result.forecast.forecastday[0].day.avgtemp_f);
+        // console.log(result.forecast.forecastday[0].day.avghumidity);
+        // console.log(result.forecast.forecastday[0].day.condition.icon);
 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -44,6 +45,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Searchbar/>
+        <UnitSwitcher/>
       </header>
     </div>
   );
