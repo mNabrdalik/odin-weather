@@ -4,7 +4,7 @@ import { useState } from 'react'
 import locationIcon from "../images/location.png" 
 import searchIcon from "../images/ic_baseline-search.png"
 
-export default function Searchbar() {
+export default function Searchbar({setWeatherData}) {
 
     const [searchLocation, setSearchLocation] = useState('')
 
@@ -13,11 +13,13 @@ export default function Searchbar() {
         setSearchLocation(searchTerm)
     }
 
-    const searchForecast = (e) => {
-        console.log(searchLocation);
+    const searchForecast = async() => {
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=eeb7ae86b1e04532835213150241801&q=${searchLocation}&days=4&aqi=no&alerts=no`);
+        const result = await response.json();
+        setWeatherData(result);
+        // console.log(result);
     }
 
-    // onclick na button, któy szuka miasta w apiweather
 
     return (
         <div className="searchbar">
