@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-export default function Current({weatherData}) {
+export default function Current({weatherData, isCelsius}) {
 
     const options = {
         weekday: "long",
@@ -28,17 +28,32 @@ export default function Current({weatherData}) {
                 <p>{weatherData.current.condition.text}</p>
             </div>
             <div className="current-detail">
-                <p className='description'>Temperature:</p>
-                <p>{weatherData.current.temp_c} <span className='temperature-unit'>°C</span></p>
-                <p className='description'>Feels Like:</p>
-                <p>{weatherData.current.feelslike_c} <span className='temperature-unit'>°C</span></p>
-                <p className='description'>Humidity:</p>
-                <p>{weatherData.current.humidity} <span className="humidity-unit">%</span></p>
-                <p className='description'>Chance of Rain:</p>
-                <p>{weatherData.forecast.forecastday[0].day.daily_chance_of_rain} <span className="rain-unit">%</span></p>
-                <p className='description'>Wind Speed:</p>
-                <p>{weatherData.current.wind_kph} <span className="wind-unit">km/h</span></p>
-          
+
+                <div className='temperature-div'>
+                    <p className='description'>Temperature:</p>
+                    <p className='temperature'>{isCelsius ? weatherData.current.temp_c : weatherData.current.temp_f } <span className='temperature-unit'>{isCelsius ? "°C" : "°F"}</span></p>
+                </div>
+      
+                <div className='left'>
+                    <p className='description'>Feels Like:</p>
+                    <p className='data'>{isCelsius ? weatherData.current.feelslike_c :weatherData.current.feelslike_f} <span className='temperature-unit'>{isCelsius ? "°C" : "°F"}</span></p>
+                </div>
+     
+                <div>
+                    <p className='description'>Humidity:</p>
+                    <p className='data'>{weatherData.current.humidity} <span className="humidity-unit">%</span></p>
+                </div>
+             
+                <div className='left'>
+                    <p className='description'>Chance of Rain:</p>
+                    <p className='data'>{weatherData.forecast.forecastday[0].day.daily_chance_of_rain} <span className="rain-unit">%</span></p>
+                </div>
+   
+                <div>
+                    <p className='description'>Wind Speed:</p>
+                    <p className='data'>{weatherData.current.wind_kph} <span className="wind-unit">km/h</span></p>
+                </div>
+
             </div>
         </div>
     )

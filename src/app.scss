@@ -12,7 +12,8 @@
 body {
     background: linear-gradient(180deg, rgba(24, 171, 235, 0.00) 0%, rgba(24, 171, 235, 0.10) 100%), #FFF;
     width: 100vw;
-    overflow-y: hidden;
+    overflow-x: hidden;
+    color: #374449;
 }
 
 .App {
@@ -40,7 +41,6 @@ body {
     width: fit-content;
     box-shadow: 0px 4px 12px rgba(21, 144, 219, 0.25);
     background-color: #fff;
-
 
     img:nth-child(1) {
         min-width: 22px;
@@ -74,14 +74,26 @@ body {
             height: auto;
         }
     }
+
+    &.focus {
+      border: 1px solid #b6deff;
+
+      input {
+          border-top: 1px solid #b6deff;
+          border-bottom: 1px solid #b6deff;
+      }
+    }
 }
 
 // Unitswitch
 .unitSwitch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 88px;
+    height: 48px;
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(21, 144, 219, 0.25);
+    border-radius: 24px;
 
     input {
         opacity: 0;
@@ -96,19 +108,22 @@ body {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ccc;
         -webkit-transition: .4s;
         transition: .4s;
       }
       
       .slider:before {
         position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
+        content: "°C";
+        height: 40px;
+        width: 40px;
         left: 4px;
         bottom: 4px;
-        background-color: white;
+        background: linear-gradient(180deg, #18ABEB 0%, #1590DB 100%);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         -webkit-transition: .4s;
         transition: .4s;
       }
@@ -118,13 +133,16 @@ body {
       }
       
       input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
+        // box-shadow: 0 0 1px #2196F3;
       }
       
       input:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
+        -webkit-transform: translateX(40px);
+        -ms-transform: translateX(40px);
+        transform: translateX(40px);
+        background: white;
+        color: #2196F3;
+        content: "°F";
       }
       
       /* Rounded sliders */
@@ -142,15 +160,207 @@ body {
   display: flex;
   justify-content: space-between;
   flex: 2;
-  margin-top: clamp(24px, 2.5vw, 48px);
+  margin-top: clamp(32px, 2.5vw, 48px);
   padding: clamp(24px, 2.5vw, 48px);
   background-color: #fff;
   box-shadow: 0px 4px 12px rgba(21, 144, 219, 0.25);
   border-radius: clamp(24px, 2.5vw, 48px);
   
+  &-main {
+    h1 {
+      font-weight: 700;
+      font-size: clamp(32px, 2.08vw, 40px);
+    }
+  
+    h2 {
+      font-weight: 600;
+      font-size: clamp(20px, 1.25vw, 24px);
+    }
+  
+    h3 {
+      font-weight: 400;
+      font-size: clamp(14px, 0.83vw, 16px);
+      margin-top: 0.75em;
+    }
+  
+    img {
+      width: clamp(96px, 6.66vw, 128px);
+      height: auto;
+      margin-top: 1em;
+    }
 
+    p {
+      font-weight: 600;
+      font-size: clamp(16px, 1.25vw, 24px);
+    }
+  }
+ 
   &-detail {
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .description {
+      color: #697377;
+      font-size: clamp(12px, 1.04vw, 20px);
+      font-weight: 600;
+    }
+
+    .data,
+    .temperature {
+      font-weight: 700;
+      font-size: clamp(22px,  2.08vw, 40px);
+      margin-bottom: clamp(24px,  2.08vw, 40px);
+    }
+
+    .data:last-child {
+      margin-bottom: 0;
+    }
+
+    .temperature {
+      font-size: clamp(32px,  3.33vw, 64px);
+    }
   }
   
+}
+
+// forecasts
+.forecasts {
+  flex: 1;
+  margin-top: clamp(24px, 2.5vw, 48px);
+
+  .forecast {
+    display: flex;
+    justify-content: space-between;
+    gap: clamp(12px, 1.66vw, 32px);
+    margin-bottom: 20px;
+    padding: clamp(24px, 2.5vw, 48px);
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(21, 144, 219, 0.25);
+    border-radius: clamp(24px, 2.5vw, 48px);
+
+    &-main {
+      flex: 1;
+      h3 {
+        font-weight: 700;
+        font-size: 20px;
+        margin-bottom: 1em;
+      }
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+
+        .description {
+          color: #697377;
+          font-size: 14px;
+          font-weight: 600;
+        }
+    
+        .temperature,
+        .data {
+          font-weight: 700;
+          font-size: clamp(24px,  2.08vw, 40px);
+          margin-top: .25em;
+        }
+      }
+    }
+
+    &-icon {
+      img, p {
+        width: clamp(80px, 4.79vw, 92px);
+        height: auto;
+        text-align: right;
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+  
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .current {
+    flex: 1.5;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+
+  .App {
+    main {
+   
+      gap: 0;
+
+      .current {
+        flex: auto;
+        width: 100%;
+
+        &-main {
+          flex: 3;
+        }
+
+        &-detail {
+          flex: 1;
+          gap: 16px;
+        }
+      }
+
+      .forecasts {
+        .forecast-main {
+          .info {
+            justify-content: left;
+            gap: 32px;
+          }
+        }
+
+      }
+    }
+  }
+
+}
+
+@media only screen and (max-width: 576px) {
+
+  .App {
+    padding-left: 24px;
+    padding-right: 24px;
+
+    .current {
+      flex-wrap: wrap;
+  
+      &-detail {
+        flex-direction: row;
+        flex-wrap: wrap;
+  
+        & > div {
+          width: 46%;
+        }
+  
+        .temperature-div{
+          width: 100%;
+          text-align: left;
+        
+          .temperature {
+            margin-bottom: 0;
+          }
+        }
+        .left {
+          text-align: left;
+        }
+      }
+    }
+  
+    .forecasts {
+      flex: auto;
+      width: 100%;
+    }
+  
+  }
+ 
 }
