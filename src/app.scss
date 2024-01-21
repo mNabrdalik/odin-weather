@@ -269,9 +269,9 @@ body {
 
     &-icon {
       img, p {
-        width: clamp(80px, 4.79vw, 92px);
+        width: clamp(64px, 4.79vw, 92px);
         height: auto;
-        text-align: right;
+        text-align: center;
         font-size: 12px;
         font-weight: 600;
       }
@@ -316,6 +316,7 @@ body {
           .info {
             justify-content: left;
             gap: 32px;
+
           }
         }
 
@@ -331,36 +332,76 @@ body {
     padding-left: 24px;
     padding-right: 24px;
 
-    .current {
+    .App-header {
       flex-wrap: wrap;
-  
-      &-detail {
-        flex-direction: row;
-        flex-wrap: wrap;
-  
-        & > div {
-          width: 46%;
-        }
-  
-        .temperature-div{
+
+      .searchbar  {
+        width: 100%;
+
+        input {
           width: 100%;
-          text-align: left;
-        
-          .temperature {
-            margin-bottom: 0;
-          }
-        }
-        .left {
-          text-align: left;
         }
       }
+
+      .unitSwitch {
+        display: block;
+        margin-top: 24px;
+        margin-left: auto;
+        margin-right: 0;
+      }
     }
-  
-    .forecasts {
-      flex: auto;
-      width: 100%;
+
+    main {
+      .current {
+        flex-wrap: wrap;
+        
+        &-main {
+          flex: auto;
+          width: 100%;
+        }
+    
+        &-detail {
+          flex-direction: row;
+          flex-wrap: wrap;
+    
+          & > div {
+            width: 46%;
+          }
+    
+          .temperature-div{
+            width: 100%;
+            text-align: left;
+          
+            .temperature {
+              margin-bottom: 0;
+            }
+          }
+          .left {
+            text-align: left;
+          }
+        }
+      }
+    
+      .forecasts {
+        flex: auto;
+        width: 100%;
+
+        .forecast {
+
+          &-main {
+
+            .info {
+              gap: 16px;
+
+            }
+          }
+
+          
+        }
+      }
+    
     }
-  
+   
   }
  
 }
